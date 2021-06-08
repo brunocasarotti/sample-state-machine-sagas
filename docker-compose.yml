@@ -1,0 +1,29 @@
+version: "3.6"
+
+
+networks:
+  teste:
+
+services:
+  rabbitmq:
+    image: masstransit/rabbitmq:latest
+    networks:
+     - teste
+    ports:
+     - "5672:5672"
+     - "15672:15672"
+     - "15692:15692"
+    healthcheck:
+        timeout: 5s
+        interval: 5s
+        retries: 10
+        test:
+          - "CMD"
+          - "rabbitmqctl"
+          - "status" 
+  mongo:
+    image: "mongo"
+    networks:
+     - teste
+    ports:
+    - '27017-27019:27017-27019'

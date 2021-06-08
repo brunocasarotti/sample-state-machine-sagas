@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Travel.Flight.Service", "Travel.Flight.Service\Travel.Flight.Service.csproj", "{08454E74-A9F2-42D5-8364-AAE14CE6BE5B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Travel.Hotel.Service", "Travel.Hotel.Service\Travel.Hotel.Service.csproj", "{D3481B14-BE81-4FF2-BC55-C0524B03825D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Travel.Car.Service", "Travel.Car.Service\Travel.Car.Service.csproj", "{57C992ED-6429-4043-8B51-50C90B81AD28}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Travel.BookingService.Api", "Travel.BookingService.Api\Travel.BookingService.Api.csproj", "{1EC1386A-0E46-43AB-B4E1-6A28692A5F52}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{08454E74-A9F2-42D5-8364-AAE14CE6BE5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08454E74-A9F2-42D5-8364-AAE14CE6BE5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08454E74-A9F2-42D5-8364-AAE14CE6BE5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08454E74-A9F2-42D5-8364-AAE14CE6BE5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3481B14-BE81-4FF2-BC55-C0524B03825D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3481B14-BE81-4FF2-BC55-C0524B03825D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3481B14-BE81-4FF2-BC55-C0524B03825D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3481B14-BE81-4FF2-BC55-C0524B03825D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57C992ED-6429-4043-8B51-50C90B81AD28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57C992ED-6429-4043-8B51-50C90B81AD28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57C992ED-6429-4043-8B51-50C90B81AD28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57C992ED-6429-4043-8B51-50C90B81AD28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EC1386A-0E46-43AB-B4E1-6A28692A5F52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EC1386A-0E46-43AB-B4E1-6A28692A5F52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EC1386A-0E46-43AB-B4E1-6A28692A5F52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EC1386A-0E46-43AB-B4E1-6A28692A5F52}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
