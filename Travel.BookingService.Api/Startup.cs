@@ -1,3 +1,4 @@
+using GreenPipes;
 using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -5,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Travel.BookingService.Api.Components;
 
 namespace Travel.BookingService.Api
 {
@@ -22,7 +24,18 @@ namespace Travel.BookingService.Api
         {
             services.AddMassTransit(x =>
             {
-                x.UsingRabbitMq();
+                x.AddSagaStateMachine<TravelStateMachine, TravelState>()
+                    .InMemoryRepository();
+
+                x.UsingRabbitMq((context, configurator) =>
+                {
+                    configurator.ReceiveEndpoint("travel-saga", e =>
+                    {
+                        e.UseMessageRetry(r => r.Immediate(50));
+                        e.UseInMemoryOutbox();
+                        e.StateMachineSaga<TravelState>(context);
+                    });
+                });
             });
 
             services.AddMassTransitHostedService();
@@ -30,7 +43,7 @@ namespace Travel.BookingService.Api
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Travel.BookingService.Api", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo {Title = "Travel.BookingService.Api", Version = "v1"});
             });
         }
 
@@ -50,10 +63,7 @@ namespace Travel.BookingService.Api
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
 }

@@ -3,10 +3,9 @@ using System;
 // ReSharper disable once CheckNamespace
 namespace Travel.Hotel.Service.Commands
 {
-    public class IBookHotel
+    public class BookHotel
     {
-        public string From { get; set; }
-        public string To { get; set; }
-        public DateTime Departure { get; set; }
+        public int HotelId { get; set; }
+        public Guid TravelId { get; set; }
     }
 }

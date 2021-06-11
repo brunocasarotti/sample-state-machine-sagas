@@ -7,7 +7,7 @@ using Travel.Hotel.Service.Contracts.Events.Events;
 
 namespace Travel.Hotel.Service.Components
 {
-    public class BookHotelConsumer : IConsumer<IBookHotel>
+    public class BookHotelConsumer : IConsumer<BookHotel>
     {
         private readonly ILogger<BookHotelConsumer> _logger;
 
@@ -15,20 +15,27 @@ namespace Travel.Hotel.Service.Components
         {
             _logger = logger;
         }
-        public Task Consume(ConsumeContext<IBookHotel> context)
+
+        public Task Consume(ConsumeContext<BookHotel> context)
         {
-            
-            if (context.Message.To == "h?")
+            _logger.LogInformation("Consumindo hotel book");
+            if (context.Message.HotelId == 0)
             {
+                _logger.LogInformation("Falhou para reservar o hotel");
                 return context.Publish<IHotelBookingFailed>(new { });
             }
 
-            if (context.Message.To == "h??")
+            if (context.Message.HotelId == -1)
             {
-                throw new ArgumentException("Invalid destination");
+                _logger.LogInformation("Erro ao reservar o hotel");
+                throw new ArgumentException();
             }
 
-            return context.Publish<IHotelBooked>(new { });
+            return context.Publish<IHotelBooked>(new
+            {
+                context.Message.HotelId,
+                context.Message.TravelId
+            });
         }
     }
 }

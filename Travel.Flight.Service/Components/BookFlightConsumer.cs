@@ -10,7 +10,7 @@ using Travel.Flight.Service.Contracts.Events.Events;
 
 namespace Travel.Flight.Service.Components
 {
-    public class BookFlightConsumer : IConsumer<IBookFlight>
+    public class BookFlightConsumer : IConsumer<BookFlight>
     {
         private readonly ILogger<BookFlightConsumer> _logger;
 
@@ -19,7 +19,7 @@ namespace Travel.Flight.Service.Components
             _logger = logger;
         }
         
-        public Task Consume(ConsumeContext<IBookFlight> context)
+        public Task Consume(ConsumeContext<BookFlight> context)
         {
             _logger.LogInformation("Consuming message {@Message}", context.Message);
             
@@ -33,7 +33,10 @@ namespace Travel.Flight.Service.Components
                 throw new ArgumentException("Invalid destination");
             }
 
-            return context.Publish<IFlightBooked>(new { });
+            return context.Publish<IFlightBooked>(new
+            {
+                context.Message.TravelId
+            });
         }
     }
 

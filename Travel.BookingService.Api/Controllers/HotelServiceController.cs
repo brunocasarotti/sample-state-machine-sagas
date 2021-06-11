@@ -20,11 +20,11 @@ namespace Travel.BookingService.Api.Controllers
 
         // GET
         [HttpPost]
-        public async Task<IActionResult> Index(IBookHotel request)
+        public async Task<IActionResult> Index(BookHotel request)
         {
             var endpoint = await _sendEndpointProvider.GetSendEndpoint(new Uri("queue:book-hotel"));
 
-            await endpoint.Send<IBookHotel>(request);
+            await endpoint.Send<BookHotel>(request);
 
             return Ok();
         }
